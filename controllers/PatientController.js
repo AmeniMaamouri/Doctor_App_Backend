@@ -50,7 +50,7 @@ module.exports.patients_get = (req,res) => {
        
        res.json(patients)
         if(err) throw err
-    })
+    }).sort( { createdAt : -1 } )
 }
 
 module.exports.patients_put = (req,res)=> {
