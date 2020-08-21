@@ -9,7 +9,7 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
+mongoose.set('useCreateIndex', true)
 app.use(cors());
 
 mongoose.connect('mongodb+srv://admin:admin@todo-flng1.mongodb.net/doctor?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })

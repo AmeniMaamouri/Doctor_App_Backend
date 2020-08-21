@@ -36,19 +36,8 @@ module.exports.patients_post = (req,res) => {
 module.exports.patients_get = (req,res) => {
     let patients = [];
     Patient.find({}, (err,data)=> {
-        data.map((val)=> {
-            patients = [...patients, {
-                _id: val._id,
-                name: val.name,
-                phone: val.phone,
-                birth: moment(val.birth).subtract(10, 'days').calendar(),
-                sexe: val.sexe,
-                adress: val.adress,
-                createdAt: val.createdAt
-            }]
-        })
-       
-       res.json(patients)
+   
+       res.json(data)
         if(err) throw err
     }).sort( { createdAt : -1 } )
 }
