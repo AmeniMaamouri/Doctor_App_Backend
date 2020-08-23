@@ -19,6 +19,7 @@ mongoose.connect('mongodb+srv://admin:admin@todo-flng1.mongodb.net/doctor?retryW
         console.log(err);
     });
 
+mongoose.set('useFindAndModify', false);
 
 app.listen(4000, () => {
     console.log('Server running on port 4000');

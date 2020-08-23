@@ -28,8 +28,18 @@ module.exports.fichePatient_post = (req, res) => {
 
 module.exports.fichePatients_get = (req, res) => {
     Patient.find({}, (err, patients) => {
+        let patient = {
+            patients: patients
+        }
+        FichePatient.find({}, (err,data)=> {
+            let fichePatients = {
+                fichePatient: data
+            }
+            var obj = Object.assign({}, patient, fichePatients)
+            res.json(obj)
+        }).sort({ createdAt: -1 })
 
-        res.json(patients)
+        
     }).sort({ createdAt: -1 })
 }
 
