@@ -51,7 +51,7 @@ module.exports.fichePatient_id_get = (req, res) => {
             }
             res.json(informations)
 
-        }).sort({ dateObservation: -1 })
+        })
     }).sort({ createdAt: -1 })
 }
 

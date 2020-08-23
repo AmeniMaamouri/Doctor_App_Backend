@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors');
 const patientRoutes = require('./routes/patientRoutes')
 const fichePatientRoutes = require('./routes/fichePatientRoutes')
+const ordonnanceRoutes = require('./routes/ordonnanceRoutes')
 
 const app = express();
 
@@ -25,3 +26,4 @@ app.listen(4000, () => {
 
 app.use(patientRoutes)
 app.use(fichePatientRoutes)
+app.use(ordonnanceRoutes)
