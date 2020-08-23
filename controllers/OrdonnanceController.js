@@ -1,5 +1,6 @@
 const Ordonnance = require('../Model/Ordonnance')
 const Patient = require('../Model/Patient')
+var ObjectID = require('mongodb').ObjectID;
 
 module.exports.ordonnances_post = (req, res) => {
 
@@ -44,8 +45,8 @@ module.exports.ordonnances_get = (req, res) => {
 
 module.exports.ordonnance_id_get = (req, res) => {
 
-    Ordonnance.findOne({_id: req.params.id}, (err,data) => {
-        Patient.findOne({_id: data.patient}, (err,patient) => {
+    Ordonnance.findOne({_id: ObjectID(req.params.id)}, (err,data) => {
+        Patient.findOne({_id: ObjectID(data.patient)}, (err,patient) => {
             res.json({
                 patientName: patient.name,
                 ordonnance: data.ordonnance,

@@ -44,7 +44,7 @@ module.exports.patients_get = (req,res) => {
 
 module.exports.patients_put = (req,res)=> {
     Patient.updateOne({_id: ObjectID(req.body._id)}, { $set: req.body } ).then((obj) => {
-        console.log('Updated ');
+        console.log('Updated');
     }).catch(err => {
         console.log(err)
     })

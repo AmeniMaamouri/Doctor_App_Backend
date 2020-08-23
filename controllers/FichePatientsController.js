@@ -2,9 +2,10 @@ const Patient = require('../Model/Patient')
 const fichePatient = require('../Model/FichePatient');
 const FichePatient = require('../Model/FichePatient');
 var ObjectID = require('mongodb').ObjectID;
+
 module.exports.fichePatient_post = (req, res) => {
 
-    Patient.find({ _id: req.body._id }, (err, patient) => {
+    Patient.find({ _id: ObjectID(req.body._id) }, (err, patient) => {
 
         if (patient[0].fichePatient != null) {
             res.json({
@@ -46,7 +47,7 @@ module.exports.fichePatients_get = (req, res) => {
 module.exports.fichePatient_id_get = (req, res) => {
     Patient.find({ _id: ObjectID(req.params.id) }, (err, data) => {
 
-        FichePatient.find({ _id: data[0].fichePatient }, (err, fiche) => {
+        FichePatient.find({ _id: ObjectID(data[0].fichePatient) }, (err, fiche) => {
 
             const informations = {
                 _id: data[0]._id,
