@@ -5,6 +5,9 @@ const cors = require('cors');
 const patientRoutes = require('./routes/patientRoutes')
 const fichePatientRoutes = require('./routes/fichePatientRoutes')
 const ordonnanceRoutes = require('./routes/ordonnanceRoutes')
+const eventRoutes = require('./routes/eventRoutes')
+const authRoutes = require('./routes/authRoutes')
+
 
 const app = express();
 
@@ -28,3 +31,5 @@ app.listen(4000, () => {
 app.use(patientRoutes)
 app.use(fichePatientRoutes)
 app.use(ordonnanceRoutes)
+app.use(eventRoutes)
+app.use(authRoutes)
