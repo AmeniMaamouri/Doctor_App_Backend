@@ -7,14 +7,22 @@ const fichePatientRoutes = require('./routes/fichePatientRoutes')
 const ordonnanceRoutes = require('./routes/ordonnanceRoutes')
 const eventRoutes = require('./routes/eventRoutes')
 const authRoutes = require('./routes/authRoutes')
-
+const notificationRoutes = require('./routes/notificationRoutes')
+const http = require('http');
+const socketio = require('socket.io');
 
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 mongoose.set('useCreateIndex', true)
 app.use(cors());
+
+const newNotif = (data) => {
+    return io.emit('newNotif', data)
+}
 
 mongoose.connect('mongodb+srv://admin:admin@todo-flng1.mongodb.net/doctor?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(console.log('Connected to Database'))
@@ -24,7 +32,7 @@ mongoose.connect('mongodb+srv://admin:admin@todo-flng1.mongodb.net/doctor?retryW
 
 mongoose.set('useFindAndModify', false);
 
-app.listen(4000, () => {
+server.listen(4000, () => {
     console.log('Server running on port 4000');
 })
 
@@ -33,3 +41,7 @@ app.use(fichePatientRoutes)
 app.use(ordonnanceRoutes)
 app.use(eventRoutes)
 app.use(authRoutes)
+app.use(notificationRoutes)
+
+
+module.exports.newNotif = newNotif;
