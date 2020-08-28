@@ -19,7 +19,8 @@ module.exports.login_post = (req,res) => {
                     var payload = {
 
                         userName: user.userName,
-                        role: user.role
+                        role: user.role,
+                        id: user._id
 
                     }
 

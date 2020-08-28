@@ -10,7 +10,7 @@ const authRoutes = require('./routes/authRoutes')
 const notificationRoutes = require('./routes/notificationRoutes')
 const http = require('http');
 const socketio = require('socket.io');
-
+const profilRoutes = require('./routes/profilRoutes')
 const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
@@ -42,6 +42,7 @@ app.use(ordonnanceRoutes)
 app.use(eventRoutes)
 app.use(authRoutes)
 app.use(notificationRoutes)
+app.use(profilRoutes)
 
 
 module.exports.newNotif = newNotif;
